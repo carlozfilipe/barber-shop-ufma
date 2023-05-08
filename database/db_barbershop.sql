@@ -31,12 +31,14 @@ CREATE TABLE produto(
   constraint fk_produto_categoria foreign key(categoria_id) references categoria(id),
   constraint fk_produto_usuario foreign key(usuario_id) references usuario(id)
 );
+
 CREATE TABLE cliente(
   id int primary key auto_increment,
   nome varchar(50),
   telefone varchar(15),
   endereco varchar(100)
 );
+
 CREATE TABLE venda(
   id int primary key auto_increment,
   total_venda decimal(10, 2) not null,
@@ -50,6 +52,7 @@ CREATE TABLE venda(
   constraint fk_venda_cliente foreign key(cliente_id) references cliente(id),
   constraint fk_venda_usuario foreign key(usuario_id) references usuario(id)
 );
+
 CREATE TABLE venda_item(
   venda_id int not null,
   produto_id bigint not null,
