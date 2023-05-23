@@ -11,6 +11,6 @@ package com.barbershop;
 public class Barbershop {
 
     public static void main(String[] args) {
-        System.out.println("Hello World, BarberShop!");
+       
     }
 }
