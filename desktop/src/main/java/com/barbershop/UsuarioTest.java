@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class UsuarioTest {
     
     public static void main(String[] args) {
-        Usuario usuario = new Usuario(0L, "Pedro Neto", "root", "padras", Perfil.PADRAO, null, null);
+        Usuario usuario = new Usuario(1L, "Carlos F S", "pass123", "carlos", Perfil.PADRAO, null, null);
         
         UsuarioDao usuarioDao = new UsuarioDao();
         String mensagem = usuarioDao.salvar(usuario);
