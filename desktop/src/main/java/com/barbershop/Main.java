@@ -23,7 +23,7 @@ public class Main {
         
         Conexao conexao = new ConexaoMySQL();
         
-        Categoria categoria = new Categoria(null, "Condicionador", "Condicionador para cabelo e barba.");
+        Categoria categoria = new Categoria(null, "Item 10", "Adiciona o item 10");
         
         String inserirSQL = "INSERT INTO categoria(nome, descricao) VALUES(?, ?)";
         
