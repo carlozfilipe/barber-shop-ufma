@@ -6,7 +6,7 @@
 package com.barbershop.model.controllers;
 
 import entities.model.daos.AutenticacaoDao;
-import com.barbershop.models.tables.AbstractMouseListener;
+import com.barbershop.model.tables.AbstractMouseListener;
 import entities.model.daos.CategoriaDao;
 import entities.model.daos.ClienteDao;
 import entities.model.daos.ProdutoDao;
@@ -18,8 +18,8 @@ import com.barbershop.model.entities.Usuario;
 import com.barbershop.model.entities.Venda;
 import com.barbershop.model.entities.VendaDetalhes;
 import com.barbershop.model.exception.NegocioException;
-import com.barbershop.models.tables.VendaRegistroTableModel;
-import com.barbershop.models.tables.VendaTableModel;
+import com.barbershop.model.tables.VendaRegistroTableModel;
+import com.barbershop.model.tables.VendaTableModel;
 import com.barbershop.view.forms.Dashboard;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -67,19 +67,19 @@ public class VendaController extends AbstractMouseListener implements ActionList
         produtos = produtoDao.todosProdutos();
         inicializarCategoria();
         this.vendaDetalhesCesto = new HashMap<>();
-        actualizarCesto(vendaDetalhesCesto);
+        atualizarCesto(vendaDetalhesCesto);
         autenticacaoDao = new AutenticacaoDao();
         usuarioDao = new UsuarioDao();
         clienteDao = new ClienteDao();
         vendaDao = new VendaDao();
-        actualizarTabelaVenda();
+        atualizarTabelaVenda();
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String accao = ae.getActionCommand().toLowerCase();
+        String acao = ae.getActionCommand().toLowerCase();
         
-        switch(accao) {
+        switch(acao) {
             case "adicionar": mostrarTelaRegistro(); break;
             case "comboboxvendacategoria": pesquisarProdutoPeloCategoria(); break;
             case "comboboxvendaproduto": selecionarProdutoNaComboBox(); break;
@@ -258,20 +258,20 @@ public class VendaController extends AbstractMouseListener implements ActionList
             
             this.vendaDetalhesCesto.put(this.produto.getNome(), vendaDetalhesTemp);
             
-            actualizarCesto(vendaDetalhesCesto);
-            actualizarTotalDaVenda();
+            atualizarCesto(vendaDetalhesCesto);
+            atualizarTotalDaVenda();
             
         } else {
             mensagemNaTela("Não há produto selecionado", Color.RED);
         }
     }
     
-    private void actualizarCesto(HashMap<String, VendaDetalhes> vendaDetalhess) {
+    private void atualizarCesto(HashMap<String, VendaDetalhes> vendaDetalhess) {
         this.vendaRegistroTableModel = new VendaRegistroTableModel(vendaDetalhess);
         this.dashboard.getTabelaVendaRegistro().setModel(vendaRegistroTableModel);
     }
     
-    private void actualizarTotalDaVenda() {
+    private void atualizarTotalDaVenda() {
         double totalVenda = this.vendaDetalhesCesto.values()
                 .stream()
                 .collect(Collectors.summingDouble(v -> v.getTotal().doubleValue()));
@@ -287,8 +287,8 @@ public class VendaController extends AbstractMouseListener implements ActionList
     private void removerProdutoNoCesto() {
         if(this.nomeDoProduto != null && !this.nomeDoProduto.isEmpty()) {
             this.vendaDetalhesCesto.remove(this.nomeDoProduto);
-            actualizarTotalDaVenda();
-            actualizarCesto(this.vendaDetalhesCesto);
+            atualizarTotalDaVenda();
+            atualizarCesto(this.vendaDetalhesCesto);
         }else{
             mensagemNaTela("Deve selecionar o produto que deseja remover", Color.RED);
         }
@@ -377,7 +377,7 @@ public class VendaController extends AbstractMouseListener implements ActionList
                 this.dashboard.getLabelVendaValorPago().setText(valorPago.toString());
                 this.dashboard.getLabelVendaTroco().setText(troco.toString());
                 mensagemNaTela(mensagem, Color.GREEN);
-                actualizarTabelaVenda();
+                atualizarTabelaVenda();
                 this.dashboard.getLabelHomeCliente().setText(String.format("%d", clienteDao.todosCliente().size()));
                 limparCampo();
             } else {
@@ -389,7 +389,7 @@ public class VendaController extends AbstractMouseListener implements ActionList
         
     }
     
-    private void actualizarTabelaVenda() {
+    private void atualizarTabelaVenda() {
         List<Venda> vendas = vendaDao.todosVendas();
         this.vendaTableModel = new VendaTableModel(vendas);
         this.dashboard.getTabelaVenda().setModel(vendaTableModel);

@@ -8,7 +8,7 @@ package com.barbershop.model.controllers;
 import entities.model.daos.ClienteDao;
 import entities.model.daos.ProdutoDao;
 import com.barbershop.model.entities.Cliente;
-import com.barbershop.models.tables.ClienteTableModel;
+import com.barbershop.model.tables.ClienteTableModel;
 import com.barbershop.view.forms.Dashboard;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -31,14 +31,14 @@ public class ClienteController implements ActionListener {
     public ClienteController(Dashboard dashboard) {
         this.dashboard = dashboard;
         this.clienteDao = new ClienteDao();
-        actualizarTabelaCliente();
+        atualizarTabelaCliente();
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String accao = ae.getActionCommand().toLowerCase();
+        String acao = ae.getActionCommand().toLowerCase();
         
-        switch(accao) {
+        switch(acao) {
             case "adicionar": adicionar(); break;
             case "salvar": salvar(); break;
             case "cancelar": cancelar();break;
@@ -56,10 +56,10 @@ public class ClienteController implements ActionListener {
         Cliente cliente = new Cliente(id, nome, telefone, endereco);
         String mensagem = clienteDao.salvar(cliente);
         
-        if(mensagem.startsWith("Cliente")) {
+        if (mensagem.startsWith("Cliente")) {
             mensagemNaTela(mensagem, Color.GREEN);
-            actualizarTabelaCliente();
-        }else {
+            atualizarTabelaCliente();
+        } else {
             mensagemNaTela(mensagem, Color.RED);
         }
     }
@@ -91,7 +91,7 @@ public class ClienteController implements ActionListener {
         mostrarTela();
     }
 
-    private void actualizarTabelaCliente() {
+    private void atualizarTabelaCliente() {
         List<Cliente> clientes = clienteDao.todosCliente();
         this.clienteTableModel = new ClienteTableModel(clientes);
         this.dashboard.getTabelaCliente().setModel(clienteTableModel);

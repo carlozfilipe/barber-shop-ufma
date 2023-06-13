@@ -7,7 +7,7 @@ package com.barbershop.model.controllers;
 
 import entities.model.daos.AutenticacaoDao;
 import entities.model.daos.UsuarioDao;
-import com.barbershop.models.tables.UsuarioTableModel;
+import com.barbershop.model.tables.UsuarioTableModel;
 import com.barbershop.model.entities.PERFIL;
 import com.barbershop.model.entities.Usuario;
 import com.barbershop.model.exception.NegocioException;
@@ -43,14 +43,14 @@ public class UsuarioController implements ActionListener, MouseListener, KeyList
         this.autenticacaoDao = new AutenticacaoDao();
         this.usuarioDao = new UsuarioDao();
         inicializaComboBoxUsuarioPerfil();
-        actualizarTabelaUsuario(usuarioDao.todosUsuarios());
+        atualizarTabelaUsuario(usuarioDao.todosUsuarios());
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String accao = ae.getActionCommand().toLowerCase();
+        String acao = ae.getActionCommand().toLowerCase();
         
-        switch(accao) {
+        switch(acao) {
             case "adicionar": adicionar(); break;
             case "editar": editar(); break;
             case "apagar": remover(); break;
@@ -136,7 +136,7 @@ public class UsuarioController implements ActionListener, MouseListener, KeyList
         this.dashboard.getTxtUsuarioSenha().setText("");
         this.dashboard.getComboBoxUsuarioPerfil().setSelectedIndex(0);
         this.dashboard.getRadioBotaoActivo().setSelected(true);
-        actualizarTabelaUsuario(usuarioDao.todosUsuarios());
+        atualizarTabelaUsuario(usuarioDao.todosUsuarios());
         this.usuario = null;
     }
     
@@ -212,7 +212,7 @@ public class UsuarioController implements ActionListener, MouseListener, KeyList
         this.dashboard.getLabelUsuarioMensagem().setBackground(color);
     }
     
-    private void actualizarTabelaUsuario(List<Usuario> usuarios) {
+    private void atualizarTabelaUsuario(List<Usuario> usuarios) {
         this.usuarioTableModel = new UsuarioTableModel(usuarios);
         this.dashboard.getTabelaUsuarios().setModel(usuarioTableModel);
     }
@@ -246,7 +246,7 @@ public class UsuarioController implements ActionListener, MouseListener, KeyList
         String pesquisar = this.dashboard.getTxtUsuarioPesquisar().getText();
         
         if(pesquisar.isEmpty()) {
-            actualizarTabelaUsuario(usuarioDao.todosUsuarios());
+            atualizarTabelaUsuario(usuarioDao.todosUsuarios());
         } else {
             List<Usuario> usuariosTemp = this.usuarioDao.todosUsuarios()
                     .stream()
@@ -257,7 +257,7 @@ public class UsuarioController implements ActionListener, MouseListener, KeyList
                     })
                     .collect(Collectors.toList());
             
-            actualizarTabelaUsuario(usuariosTemp);
+            atualizarTabelaUsuario(usuariosTemp);
         }
         
     }

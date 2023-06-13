@@ -64,7 +64,7 @@ public class VendaDao {
                             
                             final int quantidade = vd.getProduto().getQuantidade() - vd.getQuantidade();
                             
-                            String mensagem = produtoDao.actualizarQuantidade(vd.getProduto().getId(), 
+                            String mensagem = produtoDao.atualizarQuantidade(vd.getProduto().getId(), 
                                     quantidade, vd.getVenda().getUsuario().getId());
                             
                             System.out.println(mensagem);

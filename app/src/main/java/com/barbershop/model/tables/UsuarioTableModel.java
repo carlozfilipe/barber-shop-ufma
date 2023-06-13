@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.barbershop.models.tables;
+package com.barbershop.model.tables;
 
 import com.barbershop.model.entities.Usuario;
 import java.util.List;

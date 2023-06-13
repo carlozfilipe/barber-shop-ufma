@@ -15,7 +15,7 @@ import com.barbershop.model.entities.Categoria;
 import com.barbershop.model.entities.Produto;
 import com.barbershop.model.entities.Usuario;
 import com.barbershop.model.exception.NegocioException;
-import com.barbershop.models.tables.ProdutoTableModel;
+import com.barbershop.model.tables.ProdutoTableModel;
 import com.barbershop.view.forms.Dashboard;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -54,14 +54,14 @@ public class ProdutoController implements ActionListener, MouseListener, KeyList
         this.dashboard = dashboard;
         this.categoriaDao = new CategoriaDao();
         this.produtoDao = new ProdutoDao();
-        actualizarTabela(produtoDao.todosProdutos());
+        atualizarTabela(produtoDao.todosProdutos());
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String accao = ae.getActionCommand().toLowerCase();
+        String acao = ae.getActionCommand().toLowerCase();
         
-        switch(accao) {
+        switch(acao) {
             case "adicionar": adicionar(); break;
             case "editar": editar(); break;
             case "apagar": apagar(); break;
@@ -209,11 +209,11 @@ public class ProdutoController implements ActionListener, MouseListener, KeyList
         this.dashboard.getTxtProdutoPreco().setText("1");
         this.dashboard.getTxtProdutoQuantidade().setValue(0);
         this.dashboard.getComboBoxProdutoCategoria().setSelectedIndex(0);
-        actualizarTabela(produtoDao.todosProdutos());
+        atualizarTabela(produtoDao.todosProdutos());
         this.produto = null;
     }
     
-    private void actualizarTabela(List<Produto> produtos) {
+    private void atualizarTabela(List<Produto> produtos) {
         this.produtoTableModel = new ProdutoTableModel(produtos);
         this.dashboard.getTabelaProduto().setModel(produtoTableModel);
         this.dashboard.getLabelHomeProduto().setText(String.format("%d", produtos.size()));
@@ -288,7 +288,7 @@ public class ProdutoController implements ActionListener, MouseListener, KeyList
         String pesquisar = this.dashboard.getTxtProdutoPesquisar().getText();
         
         if(pesquisar.isEmpty()) {
-            actualizarTabela(produtoDao.todosProdutos());
+            atualizarTabela(produtoDao.todosProdutos());
         } else {
             List<Produto> produtoTemp = this.produtoDao.todosProdutos()
                     .stream()
@@ -298,7 +298,7 @@ public class ProdutoController implements ActionListener, MouseListener, KeyList
                     })
                     .collect(Collectors.toList());
             
-            actualizarTabela(produtoTemp);
+            atualizarTabela(produtoTemp);
         }
     }
 }

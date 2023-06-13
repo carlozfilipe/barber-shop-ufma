@@ -6,7 +6,7 @@
 package com.barbershop.model.controllers;
 
 import entities.model.daos.UsuarioDao;
-import com.barbershop.models.tables.UsuarioTableModel;
+import com.barbershop.model.tables.UsuarioTableModel;
 import com.barbershop.model.entities.Usuario;
 import com.barbershop.view.forms.Dashboard;
 import java.awt.event.ActionEvent;
@@ -35,9 +35,9 @@ public final class DashboardController implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String accao = ae.getActionCommand().toLowerCase();
+        String acao = ae.getActionCommand().toLowerCase();
         
-        switch(accao) {
+        switch(acao) {
             case "home": panelHome(); break;
             case "clientes": panelClientes(); break;
             case "produtos": panelProdutos(); break;

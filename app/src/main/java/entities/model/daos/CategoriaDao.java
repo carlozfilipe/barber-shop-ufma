@@ -130,7 +130,7 @@ public class CategoriaDao {
         try {
             PreparedStatement preparedStatement = conexao.obterConexao().prepareStatement(sql);
 
-            int resultado = preparedStatement.executeUpdate();
+            int resultado = preparedStatement.executeUpdate(); 
             
             return resultado == 1 ? "Categoria apagado com sucesso." : "Nao foi possivel apagar categoria";
             

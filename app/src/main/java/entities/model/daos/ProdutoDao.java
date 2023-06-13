@@ -76,7 +76,7 @@ public class ProdutoDao {
         }
     }
     
-    public String actualizarQuantidade(Long idProduto, Integer quantidade, Long usuarioId) {
+    public String atualizarQuantidade(Long idProduto, Integer quantidade, Long usuarioId) {
         String sql = "UPDATE produto SET quantidade = ?, usuario_id = ? WHERE id  = ?";
         System.out.println("Venda: " + idProduto + "QTD: " +quantidade + "USUARIO: "+usuarioId);
         try {

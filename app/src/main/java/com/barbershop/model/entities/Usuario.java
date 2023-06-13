@@ -74,6 +74,14 @@ public class Usuario implements Estado{
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public String getUsername() {
         return username;
@@ -123,14 +131,6 @@ public class Usuario implements Estado{
     @Override
     public void mudarEstado() {
         this.estado = !this.estado;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public boolean isEstado() {

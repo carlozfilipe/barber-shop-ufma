@@ -51,7 +51,7 @@ public class AutenticacaoDao {
             return null;
        
         if(usuario.isEstado() && validaSenha(usuario.getSenha(), login.getSenha())) {
-            usuarioDao.actualizarUltimoLogin(usuario);
+            usuarioDao.atualizarUltimoLogin(usuario);
             return usuario;
         }
         return null;

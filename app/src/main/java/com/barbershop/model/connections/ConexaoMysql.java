@@ -16,7 +16,7 @@ import java.sql.SQLException;
  * @author ItaloMatheus
  */
 
-public class ConexaoMysql implements Conexao{
+public class ConexaoMysql implements Conexao {
     
     private Connection connection;
     private final String URL ="jdbc:mysql://172.17.0.2:3306/db_barbershop?user=root";

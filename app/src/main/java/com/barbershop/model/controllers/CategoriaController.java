@@ -10,7 +10,7 @@ import com.barbershop.model.connections.ConexaoMysql;
 import entities.model.daos.CategoriaDao;
 import com.barbershop.model.entities.Categoria;
 import com.barbershop.model.exception.NegocioException;
-import com.barbershop.models.tables.CategoriaTableModel;
+import com.barbershop.model.tables.CategoriaTableModel;
 import com.barbershop.view.forms.Dashboard;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -39,7 +39,7 @@ public class CategoriaController implements ActionListener, MouseListener{
         this.conexao = new ConexaoMysql();
         this.categoriaDao = new CategoriaDao();
         this.dashboard = dashboard;
-        actualizarTabelaCategoria(); 
+        atualizarTabelaCategoria(); 
         inicializarComboBoxCategoriaNoProduto();
     }
     
@@ -51,7 +51,7 @@ public class CategoriaController implements ActionListener, MouseListener{
         });
     }    
     
-    private void actualizarTabelaCategoria() {
+    private void atualizarTabelaCategoria() {
         this.categorias = categoriaDao.todasCategorias();
         this.categoriaTableModel = new CategoriaTableModel(this.categorias);
         this.dashboard.getTabelaCategoria().setModel(categoriaTableModel);
@@ -59,8 +59,8 @@ public class CategoriaController implements ActionListener, MouseListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String accao = ae.getActionCommand().toLowerCase();
-        switch(accao) {
+        String acao = ae.getActionCommand().toLowerCase();
+        switch(acao) {
             case "salvar": salvar(); break;
             case "apagar": apagar(); break;
             case "limpar": limpar(); break;
@@ -77,7 +77,7 @@ public class CategoriaController implements ActionListener, MouseListener{
         if(mensagem.startsWith("Categoria")) {
             mensagemNaTela(mensagem, Color.GREEN);
             
-            actualizarTabelaCategoria();
+            atualizarTabelaCategoria();
             
             limpaCampos();
         } else {
@@ -90,7 +90,7 @@ public class CategoriaController implements ActionListener, MouseListener{
         this.dashboard.getTxtCategoriaNome().setText("");
         this.dashboard.getTxtCategoriaDescricao().setText("");
         this.categoria = null;
-        actualizarTabelaCategoria();
+        atualizarTabelaCategoria();
         inicializarComboBoxCategoriaNoProduto();
     }
     

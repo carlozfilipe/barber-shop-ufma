@@ -173,7 +173,7 @@ public class UsuarioDao {
         }
     }
     
-    public void actualizarUltimoLogin(Usuario usuario) {
+    public void atualizarUltimoLogin(Usuario usuario) {
         String sql = "UPDATE usuario SET ultimoLogin = ? WHERE id = ?";
         try {
             PreparedStatement preparedStatement = conexao.obterConexao().prepareStatement(sql);
